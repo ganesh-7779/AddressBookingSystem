@@ -28,7 +28,6 @@ public class AddressBookMain {
 		hashmap.put(person.getFirstName(), person);
 		System.out.println(hashmap);
 	}
-
 	public static void main(String[] args) {
 		System.out.println("Welcome To Address Book Program");
 		AddressBookMain obj = new AddressBookMain();
