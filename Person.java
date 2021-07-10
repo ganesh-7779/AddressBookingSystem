@@ -10,6 +10,7 @@ public class Person {
 	private String phone;
 	private String email;
 
+	
 	public String toString() {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";

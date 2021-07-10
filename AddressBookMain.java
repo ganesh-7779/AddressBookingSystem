@@ -1,9 +1,9 @@
 
-/**
+/**********************************************************************************
  * Purpose : Implementation Of Address Book System Program Using hashmap or ArrayList
  * @author Ganesh Gavad
  * @version 1.0;
- **/
+ **********************************************************************************/
 package com.bridgelabz;
 
 import java.util.HashMap;
@@ -20,6 +20,8 @@ public class AddressBookMain {
 	Person person = new Person(); // Object of person class
 
 	/**
+	 * UC2
+	 * 
 	 * @addContact This method for UC2 adds object person and its fields to Hashmap
 	 */
 	public void addContact() {
@@ -44,6 +46,8 @@ public class AddressBookMain {
 	}
 
 	/**
+	 * UC3
+	 * 
 	 * @editContact This is method for UC3 finds person according to first name and
 	 *              change its field according to user input
 	 */
@@ -101,6 +105,26 @@ public class AddressBookMain {
 		}
 	}
 
+	/**
+	 * UC4
+	 * 
+	 * @deleteContact This is method for UC4 To removes person from Hashmap
+	 *                according to first name.
+	 */
+	private void deleteContact() {
+		System.out.println("Enter First name of contact to delete it ");
+		String enteredName = sc.next();
+		Set<String> Keys = hashmap.keySet();
+		for (String i : Keys) {
+			if (i.equals(enteredName)) {
+				hashmap.remove(i);
+				System.out.println("Person removed from Address book");
+			} else
+				System.out.println("Person not found");
+		}
+
+	}
+
 	private void showDetails() {
 		System.out.println(hashmap);
 	}
@@ -114,18 +138,21 @@ public class AddressBookMain {
 		AddressBookMain obj = new AddressBookMain();
 		boolean isExit = false;
 		while (!isExit) {
-			System.out.println("Emter Option \n1.addContact\n2.editContact\n3.showDetails\n4.Exit");
+			System.out.println("Emter Option \n1.addContact\n2.editContact\n3.deleteContact\n4.showDetails\n5.Exit");
 			int userInput = sc.nextInt();
 			switch (userInput) {
 			case 1:
 				obj.addContact();
+
 				break;
 			case 2:
 				obj.editContact();
 				break;
 			case 3:
-				obj.showDetails();
+				obj.deleteContact();
 			case 4:
+				obj.showDetails();
+			case 5:
 				isExit = true;
 				break;
 			default:
