@@ -1,14 +1,15 @@
 
 /**********************************************************************************
- * Purpose : Implementation Of Address Book System Program Using hashmap or ArrayList
+ * Purpose : Implementation Of Address Book System Program Using hashMap or ArrayList
  * @author Ganesh Gavad
  * @version 1.0;
  **********************************************************************************/
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * @AddressBookMain is main class Of Program
@@ -16,33 +17,36 @@ import java.util.Set;
 
 public class AddressBookMain {
 	private static Scanner sc = new Scanner(System.in);
-	HashMap<String, Person> hashmap = new HashMap<>();
-	Person person = new Person(); // Object of person class
+	private ArrayList<Person> contactArray = new ArrayList<>();
+	private Map<String, Person> contactMap = new HashMap<>();
+
+	// Object of person class
 
 	/**
 	 * UC2
 	 * 
 	 * @addContact This method for UC2 adds object person and its fields to Hashmap
 	 */
-	public void addContact() {
+	public void addNewContact() {
 		System.out.println("Enter First Name");
-		person.setFirstName(sc.next());
-		System.out.println("Enter Last Name");
-		person.setLastName(sc.next());
-		System.out.println("Enter Address");
-		person.setAddress(sc.next());
-		System.out.println("Enter City");
-		person.setCity(sc.next());
-		System.out.println("Enter State");
-		person.setState(sc.next());
-		System.out.println("Enter Zip");
-		person.setZip(sc.next());
-		System.out.println("Enter Phone");
-		person.setPhone(sc.next());
-		System.out.println("Enter Email");
-		person.setEmail(sc.next());
-		hashmap.put(person.getFirstName(), person);
-		System.out.println(hashmap);
+		String firstName = sc.next();
+		System.out.println("Enter last Name");
+		String lastName = sc.next();
+		System.out.println("Enter the Address");
+		String address = sc.next();
+		System.out.println("Enter the City");
+		String city = sc.next();
+		System.out.println("Enter the State");
+		String state = sc.next();
+		System.out.println("Enter the Pincode");
+		String pinCode = sc.next();
+		System.out.println("Enter the Number");
+		String phoneNumber = sc.next();
+		System.out.println("Enter the Email");
+		String emailId = sc.next();
+		Person obj = new Person(firstName, lastName, address, city, state, pinCode, phoneNumber, emailId);
+		contactArray.add(obj);
+		contactMap.put(firstName, obj);
 	}
 
 	/**
@@ -51,57 +55,54 @@ public class AddressBookMain {
 	 * @editContact This is method for UC3 finds person according to first name and
 	 *              change its field according to user input
 	 */
+
 	public void editContact() {
-		System.out.println("Enter First Name To edit Contact Details ");
-		String enterName;
-		enterName = sc.next();
-		Set<String> key = hashmap.keySet();
-		for (String i : key) {
-			if (i.equals(enterName)) {
-				int check = 0;
-				System.out.println("Person Found, What Do You Want To Edit");
-				System.out
-						.println("Enter\n1.FirstName\n2.lastName\n3.address\n4.city\n5.state\n6.zip\n7.phone\n8.email");
-				check = sc.nextInt();
-				switch (check) {
-				case 1:
-					System.out.println("Enter New First Name");
-					person.setFirstName(sc.next());
-					break;
-				case 2:
-					System.out.println("Enter New Last Name");
-					person.setLastName(sc.next());
-					break;
-				case 3:
-					System.out.println("Enter New Address");
-					person.setAddress(sc.next());
-					break;
-				case 4:
-					System.out.println("Enter New City");
-					person.setCity(sc.next());
-					break;
-				case 5:
-					System.out.println("Enter New State");
-					person.setState(sc.next());
-					break;
-				case 6:
-					System.out.println("Enter New Zip");
-					person.setZip(sc.next());
-					break;
-				case 7:
-					System.out.println("Enter New Phone");
-					person.setPhone(sc.next());
-					break;
-				case 8:
-					System.out.println("Enter New Email");
-					person.setEmail(sc.next());
-					break;
-				default:
-					System.out.println("Invalid Input");
-				}
-			}
-			hashmap.put(enterName, person);
-			System.out.println(hashmap);
+
+		System.out.println("Enter The First Name to edit the contact details");
+		String fn = sc.next();
+		Person obj = contactMap.get(fn);
+		int check = 0;
+		System.out.println("Person Found, What Do You Want To Edit");
+		System.out.println("Enter\n1.lastName\n2.address\n3.city\n4.state\n5.Pincode\n6.phone\n7.email");
+		check = sc.nextInt();
+		switch (check) {
+		case 1:
+			System.out.println("Enter the last Name");
+			String lastName = sc.next();
+			obj.setLastName(lastName);
+			break;
+		case 2:
+			System.out.println("Enter the Address");
+			String address = sc.next();
+			obj.setAddress(address);
+			break;
+		case 3:
+			System.out.println("Enter the City");
+			String city = sc.next();
+			obj.setCity(city);
+			break;
+		case 4:
+			System.out.println("Enter the State");
+			String state = sc.next();
+			obj.setState(state);
+			break;
+		case 5:
+			System.out.println("Enter the Pincode");
+			String pin = sc.next();
+			obj.setPincode(pin);
+			break;
+		case 6:
+			System.out.println("Enter the Number");
+			String num = sc.next();
+			obj.setPhoneNumber(num);
+			break;
+		case 7:
+			System.out.println("Enter the Email");
+			String em = sc.next();
+			obj.setEmailId(em);
+			break;
+		default:
+			System.out.println("Invalid Input");
 		}
 	}
 
@@ -111,22 +112,16 @@ public class AddressBookMain {
 	 * @deleteContact This is method for UC4 To removes person from Hashmap
 	 *                according to first name.
 	 */
-	private void deleteContact() {
-		System.out.println("Enter First name of contact to delete it ");
-		String enteredName = sc.next();
-		Set<String> Keys = hashmap.keySet();
-		for (String i : Keys) {
-			if (i.equals(enteredName)) {
-				hashmap.remove(i);
-				System.out.println("Person removed from Address book");
-			} else
-				System.out.println("Person not found");
-		}
 
+	public void deleteContact() {
+		System.out.println("Enter The First Name to delete the contact details");
+		String fn = sc.next();
+		Person obj = contactMap.get(fn);
+		contactArray.remove(obj);
 	}
 
-	private void showDetails() {
-		System.out.println(hashmap);
+	public void printContact() {
+		System.out.println(contactArray);
 	}
 
 	/**
@@ -134,29 +129,31 @@ public class AddressBookMain {
 	 */
 	public static void main(String[] args) {
 
-		System.out.println("Welcome To Address Book Program");
-		AddressBookMain obj = new AddressBookMain();
+		System.out.println("Welcome To Address Book System");
+		AddressBookMain Contact1 = new AddressBookMain();
 		boolean isExit = false;
 		while (!isExit) {
-			System.out.println("Emter Option \n1.addContact\n2.editContact\n3.deleteContact\n4.showDetails\n5.Exit");
-			int userInput = sc.nextInt();
-			switch (userInput) {
+			System.out.println("Enter  your choice \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Print Book \n5.Close");
+			int choice = sc.nextInt();
+			switch (choice) {
 			case 1:
-				obj.addContact();
-
+				Contact1.addNewContact();
 				break;
 			case 2:
-				obj.editContact();
+				Contact1.editContact();
 				break;
 			case 3:
-				obj.deleteContact();
+				Contact1.deleteContact();
+				break;
 			case 4:
-				obj.showDetails();
+				Contact1.printContact();
+				break;
 			case 5:
 				isExit = true;
 				break;
 			default:
 				System.out.println("Invalid Input");
+				break;
 			}
 		}
 	}
