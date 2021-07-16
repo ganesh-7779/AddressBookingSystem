@@ -6,13 +6,20 @@ public class Person {
 	private String address;
 	private String city;
 	private String state;
-	private String zip;
-	private String phone;
-	private String email;
+	private String pinCode;
+	private String phoneNumber;
+	private String emailID;
 
-	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
+	public Person(String firstName, String lastName, String address, String city, String state, String pinCode,
+			String phoneNumber, String emailID) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.pinCode = pinCode;
+		this.phoneNumber = phoneNumber;
+		this.emailID = emailID;
 	}
 
 	public String getFirstName() {
@@ -55,28 +62,33 @@ public class Person {
 		this.state = state;
 	}
 
-	public String getZip() {
-		return zip;
+	public String getPinCode() {
+		return pinCode;
 	}
 
-	public void setZip(String zip) {
-		this.zip = zip;
+	public void setPincode(String pinCode) {
+		this.pinCode = pinCode;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailId() {
+		return emailID;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailId(String emailId) {
+		this.emailID = emailId;
+	}
+
+	public String toString() {
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
+				+ ", state=" + state + ", pinCode=" + pinCode + ", phoneNumber=" + phoneNumber + ", emailId=" + emailID + "]";
 	}
 
 }
